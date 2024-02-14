@@ -73,6 +73,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 #include "shiftview.c"
 
 static const Key keys[] = {
@@ -115,6 +117,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+   	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+
 	{ 0, XF86XK_AudioMute,        spawn, {.v = mute_vol } },
        { 0, XF86XK_AudioLowerVolume, spawn, {.v = down_vol } },
        { 0, XF86XK_AudioRaiseVolume, spawn, {.v = up_vol } },
