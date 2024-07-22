@@ -14,6 +14,15 @@ Patches Applied:
 8. warp 
 9. restartsig
 10. shiftview  
+11. hide vacant tags
+12. Different layouts:
+    a. Monocle
+    b. floating
+    c. tile
+    d. fibonacci
+    e. grid
+    f. tatami
+13. Truecenteredtitle
 
 Requirements
 ------------
