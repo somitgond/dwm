@@ -1237,6 +1237,7 @@ manage(Window w, XWindowAttributes *wa)
 	}
 
 	wc.border_width = c->bw;
+
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
 	XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColBorder].pixel);
 	configure(c); /* propagates border_width, if size doesn't change */
@@ -3156,7 +3157,6 @@ cyclelayout(const Arg *arg) {
 			setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
 	}
 }
-
 
 int
 main(int argc, char *argv[])
