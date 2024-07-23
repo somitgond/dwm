@@ -2,9 +2,9 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx = 4;             /* gaps between windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappx = 4;             /* gaps between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -12,18 +12,18 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Meslo LG S DZ:style=Regular:size=10" };
-static const char dmenufont[]       = "Meslo LG S DZ:style=Regular:size=10";
+static const char *fonts[]          = { "Meslo LG S DZ:style=Regular:size=10:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Meslo LG S DZ:style=Regular:size=10:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#f87359"; 
+static const char col_cyan[]        = "#f87359";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeTitle]  = { col_gray4, col_gray1,  col_gray2  },
+	[SchemeTitle]  = { col_gray3, col_gray1, col_gray1  }, // window title color scheme
 };
 
 /* tagging */
@@ -47,8 +47,8 @@ static const Rule rules[] = {
 };
 
 /* window following */
-#define WFACTIVE '+'
-#define WFINACTIVE '-'
+#define WFACTIVE '>'
+#define WFINACTIVE '|'
 #define WFDEFAULT WFINACTIVE
 
 /* layout(s) */
@@ -66,6 +66,8 @@ static const Layout layouts[] = {
  	{ "[\\]",      dwindle },
 	{ "|+|",      tatami },
 	{ "HHH",      grid },
+   	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -111,6 +113,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} },
+   	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[8]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
