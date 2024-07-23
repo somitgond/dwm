@@ -6,7 +6,7 @@ Patches Applied:
 ---------------
 1. movestack
 2. systray
-3. useless gaps
+3. fullgaps
 4. autostart
 5. window follow
 6. scratchpad
@@ -25,6 +25,7 @@ Patches Applied:
     g. centeredMaster
 13. Truecenteredtitle
 14. dwm-title-color
+15. Cyclelayouts
 
 Requirements
 ------------

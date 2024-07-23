@@ -18,12 +18,15 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#f87359";
+static const char col_cyan[]        = "#005577";
+static const char col_red[]         = "#f87359";
+static const char col_orange[]      = "#f59542";
+static const char col_black[]       = "#040404";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeTitle]  = { col_gray3, col_gray1, col_gray1  }, // window title color scheme
+	[SchemeNorm] = { col_gray3, col_black, col_gray2 },
+	[SchemeSel]  = { col_black, col_orange,  col_orange  },
+	[SchemeTitle]  = { col_gray3, col_black, col_gray2  }, // window title color scheme
 };
 
 /* tagging */
@@ -68,6 +71,7 @@ static const Layout layouts[] = {
 	{ "HHH",      grid },
    	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -115,6 +119,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} },
    	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[7]} },
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[8]} },
+   	{ MODKEY|ControlMask,	    	XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -123,6 +129,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+    { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
     { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
    	{ MODKEY,                       XK_n,	shiftview,         { .i = +1 } },
 	{ MODKEY,                       XK_b,	shiftview,         { .i = -1 } },
