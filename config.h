@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int gappx = 4;             /* gaps between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -18,25 +18,24 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_red[]         = "#f87359";
-static const char col_orange[]      = "#f59542";
-static const char col_black[]       = "#040404";
+static const char col_cyan[]        = "#81a1c1";
+static const char col_red[]         = "#4c566a"; //f87359
+static const char col_black[]       = "#000000";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_black, col_black },
-	[SchemeSel]  = { col_black, col_orange,  col_orange  },
+	[SchemeSel]  = { col_black, col_cyan,  col_cyan  },
 	[SchemeTitle]  = { col_gray4, col_black, col_black  }, // window title color scheme
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
 // volume and brightness keys
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
-
 static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
 static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
 
@@ -57,7 +56,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -65,12 +64,9 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-   	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
-	{ "|+|",      tatami },
-	{ "HHH",      grid },
    	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
+   	{ "|||",      tcl },
 	{ NULL,       NULL },
 };
 
@@ -87,10 +83,10 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray4, "-sb", col_orange, "-sf", col_black, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray4, "-sb", col_cyan, "-sf", col_black, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -113,12 +109,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-   	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[5]} },
-	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[6]} },
-   	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[7]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[8]} },
+   	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
    	{ MODKEY,	                	XK_space,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_space,  setlayout,      {0} },
