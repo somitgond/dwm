@@ -4,7 +4,7 @@
 /* appearance */
 static const unsigned int borderpx       = 2;        /* border pixel of windows */
 static const unsigned int snap           = 16;       /* snap pixel */
-static const unsigned int gappx          = 4;             /* gaps between windows */
+static const unsigned int gappx          = 5;             /* gaps between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft  = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 4;   /* systray spacing */
@@ -16,17 +16,16 @@ static const char *fonts[]          = { "Meslo LG M DZ:style=Bold:size=11:antial
 static const char dmenufont[]       = "Meslo LG M DZ:style=Bold:size=11:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#a2a2a2";  // bbbbbb
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577"; 
-static const char col_gray[]        = "#7F7F7F";//81a1c1 96B6C5 96b6c5
-static const char col_black[]       = "#111111";
-static const char col_orange[]      = "#d08770";
+static const char col_gray[]        = "#929292"; //96b6c5 98971a blue gray: 98AFC7
+static const char col_black[]       = "#282828";  // Gunmetal color 16161D
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_black, col_black },
 	[SchemeSel]  = { col_black, col_gray,  col_gray },
-	[SchemeTitle]  = { col_gray3, col_black, col_black  }, // window title color scheme
+	[SchemeTitle]  = { col_gray3, col_black, col_black }, // window title color scheme
 };
 
 /* tagging  Japense/chinese characters*/
@@ -43,14 +42,14 @@ static const Rule rules[] = {
 };
 
 /* window following */
-#define WFACTIVE '('
-#define WFINACTIVE ')'
+#define WFACTIVE '>'
+#define WFINACTIVE '|'
 #define WFDEFAULT WFINACTIVE
 
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {

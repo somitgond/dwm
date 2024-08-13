@@ -5,12 +5,12 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 Patches Applied:
 ---------------
 1. movestack: move windows in stack forward and backward 
-2. systray
+2. systray: system tray in dwm bar
 3. fullgaps: just some gaps between windows and bar
-4. autostart
+4. autostart: autostart some programs with dwm
 5. window follow: follow the window through tags
 6. scratchpad
-7. alwayscenter
+7. alwayscenter: open new floating window in center
 8. warp: set mouse pointer to the center of window, when changing windows
 9. restartsig: restart dwm without quitting
 10. shiftview: move to neighbouring tags
@@ -24,6 +24,7 @@ Patches Applied:
 13. Truecenteredtitle: center the window title in the bar
 14. titlecolor: set custom colors to window title
 15. Cyclelayouts: cycle through the layouts
+16. NoTitle: No window title on the dwm bar
 
 Requirements
 ------------
