@@ -10,7 +10,7 @@ static const unsigned int systrayonleft  = 0;    /* 0: systray in the right corn
 static const unsigned int systrayspacing = 4;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Meslo LG M DZ:style=Bold:size=11:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Meslo LG M DZ:style=Bold:size=11:antialias=true:autohint=true";
@@ -38,7 +38,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",     NULL,       "Firefox Preference",       2,            1,           -1 },
+	{ "Firefox",     NULL,       NULL,       2,            0,           -1 },
+	{ "st",          NULL,       NULL,       1,            0,           -1 },
 };
 
 /* window following */
@@ -129,9 +130,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
     { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
    	{ MODKEY,                       XK_n,	shiftview,         { .i = +1 } },
 	{ MODKEY,                       XK_b,	shiftview,         { .i = -1 } },
