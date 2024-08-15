@@ -22,9 +22,8 @@ Patches Applied:
     d. centeredMaster
     e. three column
 13. Truecenteredtitle: center the window title in the bar
-14. titlecolor: set custom colors to window title
-15. Cyclelayouts: cycle through the layouts
-16. NoTitle: No window title on the dwm bar
+14. Cyclelayouts: cycle through the layouts
+15. NoTitle: No window title on the dwm bar
 
 Requirements
 ------------
