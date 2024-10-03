@@ -12,15 +12,16 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "MesloLGMDZ Nerd Font Mono:style=Bold:size=11:antialias=true:autohint=true" };
-static const char dmenufont[]       = "MesloLGMDZ Nerd Font Mono:style=Bold:size=11:antialias=true:autohint=true";
+static const int focusonwheel       = 0;
+static const char *fonts[]          = { "Meslo LG S DZ:style=Bold:size=11:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Meslo LG S DZ:style=Bold:size=11:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#a2a2a2";  // bbbbbb
+static const char col_gray3[]       = "#e7d7ad";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577"; 
-static const char col_gray[]        = "#929292"; //96b6c5 98971a blue gray: 98AFC7
-static const char col_black[]       = "#282828";  // Gunmetal color 16161D
+static const char col_gray[]        = "#a89985"; 
+static const char col_black[]       = "#1d2021";  
 static const char col_orange[]      = "#d79921";  
 static const char col_greendim[]   = "#689d6a";  
 static const char *colors[][3]      = {
@@ -29,7 +30,7 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_black, col_gray,  col_greendim},
 };
 
-/* tagging  Japense/chinese characters*/
+/* tagging  Japanese/chinese characters*/
 //static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 //static const char *tags[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
@@ -40,8 +41,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",     NULL,       NULL,       2,            0,           -1 },
-	{ "st",          NULL,       NULL,       1,            0,           -1 },
+	{ "Firefox",          NULL,       NULL,       2,            0,           -1 },
 };
 
 /* window following */
@@ -87,13 +87,14 @@ static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *browserChromecmd[]  = { "google-chrome-stable", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 // volume and brightness keys and other Fn shortcuts
-static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
-static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
+static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
+static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
-static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
+static const char *dimmer[]   = { "brightnessctl", "set", "2%-", NULL };
 static const char *networkManagerOff[]   = { "nmcli", "networking", "off", NULL };
+static const char *lck[]   = { "slock", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,6 +104,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd } },
     { MODKEY|ShiftMask,             XK_c,      spawn,          {.v = browserChromecmd } },
     { MODKEY|ShiftMask,             XK_e,      spawn,          {.v = filecmd } },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lck} },
 
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,      togglefollow,   {0} },
@@ -144,7 +146,7 @@ static const Key keys[] = {
     { 0,                            XF86XK_WLAN,              spawn, {.v = networkManagerOff } },
     { 0,                            XF86XK_Tools,             spawn, {.v = firefoxcmd } },
     { 0,                            XF86XK_Bluetooth,         spawn, {.v = browserChromecmd } },
-    { 0,                            XF86XK_Favorites,         spawn, {.v = dmenucmd } },
+    { 0,                            XF86XK_Favorites,         spawn, {.v = scratchpadcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
