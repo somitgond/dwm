@@ -32,7 +32,7 @@ static const char *colors[][3]      = {
 
 /* tagging  Japanese/chinese characters*/
 //static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 //static const char *tags[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
 
 static const Rule rules[] = {
@@ -80,20 +80,20 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_gray, "-sf", col_black, NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux", "-u", NULL };
 //static const char *termcmd[]  = { "alacritty", "-e", "tmux", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24","-e", "tmux", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24","-e", "tmux", "-u", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
-static const char *browserChromecmd[]  = { "chrome", NULL };
+static const char *browserChromecmd[]  = { "google-chrome-stable", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 // volume and brightness keys and other Fn shortcuts
-static const char *up_vol[]   = { "mixer", "vol=+5%",   NULL };
-static const char *down_vol[] = { "mixer", "vol=-5%",   NULL };
-static const char *mute_vol[] = { "mixer", "vol.mute=toggle", NULL };
+static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
+static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
+static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
-static const char *brighter[] = { "backlight", "+", "5", NULL };
-static const char *dimmer[]   = { "backlight", "-", "5", NULL };
+static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
+static const char *dimmer[]   = { "brightnessctl", "set", "4%-", NULL };
 static const char *networkManagerOff[]   = { "nmcli", "networking", "off", NULL };
 static const char *lck[]   = { "slock", NULL };
 
