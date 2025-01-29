@@ -20,9 +20,7 @@ Patches Applied:
     c. tile
     d. centeredMaster
     e. three column
-12. Truecenteredtitle: center the window title in the bar
-13. Cyclelayouts: cycle through the layouts
-14. NoTitle: No window title on the dwm bar
+12. Cyclelayouts: cycle through the layouts
 
 Requirements
 ------------
