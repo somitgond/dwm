@@ -23,11 +23,21 @@ static const char col_cyan[]        = "#005577";
 static const char col_gray[]        = "#a89985"; 
 static const char col_black[]       = "#1d2021";  
 static const char col_orange[]      = "#d79921";  
-static const char col_greendim[]   = "#689d6a";  
+static const char col_greendim[]   = "#689d6a";
+static const char norm_fg[] = "#D5C4A1";
+static const char norm_bg[] = "#1d2021";
+static const char norm_border[] = "#665c54";
+
+static const char sel_fg[] = "#FE8019";
+static const char sel_bg[] = "#1d2021";
+static const char sel_border[] = "#fbf1c7";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_black, col_black},
-	[SchemeSel]  = { col_black, col_gray,  col_greendim},
+  //	[SchemeNorm] = { col_gray3, col_black, col_black},
+  //	[SchemeSel]  = { col_black, col_gray,  col_greendim},
+      [SchemeNorm] =   { norm_fg,   norm_bg,    norm_border }, 		     // unfocused wins
+      [SchemeSel]  =   { sel_fg,    sel_bg,     sel_border },		     // the focused win
 };
 
 /* tagging  Japanese/chinese characters*/
@@ -85,6 +95,7 @@ static const char *termcmd[]  = { "st", "-e", "tmux", "-u", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24","-e", "tmux", "-u", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *emacscmd[]  = { "emacs", NULL };
 static const char *browserChromecmd[]  = { "google-chrome-stable", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 // volume and brightness keys and other Fn shortcuts
@@ -104,11 +115,12 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-    { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd } },
-    { MODKEY|ShiftMask,             XK_c,      spawn,          {.v = browserChromecmd } },
-    { MODKEY|ShiftMask,             XK_e,      spawn,          {.v = filecmd } },
-    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lck} },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd } },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = browserChromecmd } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = filecmd } },
+	{ MODKEY,                	XK_e,      spawn,          {.v = emacscmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lck} },
 
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_n,      togglefollow,   {0} },
@@ -125,7 +137,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-    { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
    	//{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
 	//{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
    	{ MODKEY,           	       	XK_space,  cyclelayout,    {.i = -1 } },
@@ -138,19 +150,19 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
    	{ MODKEY,                       XK_n,	shiftview,         { .i = +1 } },
 	{ MODKEY,                       XK_b,	shiftview,         { .i = -1 } },
-    { 0,                            XF86XK_AudioMicMute,     spawn, {.v = mute_mic } },
-    { 0,                            XF86XK_AudioMute,        spawn, {.v = mute_vol } },
-    { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = down_vol } },
-    { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = up_vol } },
-    { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = dimmer } },
-    { 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brighter } },
-    { 0,                            XF86XK_WLAN,              spawn, {.v = networkManagerOff } },
-    { 0,                            XF86XK_Tools,             spawn, {.v = firefoxcmd } },
-    { 0,                            XF86XK_Bluetooth,         spawn, {.v = browserChromecmd } },
-    { 0,                            XF86XK_Favorites,         spawn, {.v = scratchpadcmd } },
+	{ 0,                            XF86XK_AudioMicMute,     spawn, {.v = mute_mic } },
+	{ 0,                            XF86XK_AudioMute,        spawn, {.v = mute_vol } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = down_vol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = up_vol } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = dimmer } },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brighter } },
+	{ 0,                            XF86XK_WLAN,              spawn, {.v = networkManagerOff } },
+	{ 0,                            XF86XK_Tools,             spawn, {.v = firefoxcmd } },
+	{ 0,                            XF86XK_Bluetooth,         spawn, {.v = browserChromecmd } },
+	{ 0,                            XF86XK_Favorites,         spawn, {.v = scratchpadcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
