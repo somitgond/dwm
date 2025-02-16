@@ -24,21 +24,28 @@ static const char col_gray[]        = "#a89985";
 static const char col_black[]       = "#1d2021";  
 static const char col_orange[]      = "#d79921";  
 static const char col_greendim[]   = "#689d6a";
-static const char norm_fg[] = "#D5C4A1";
-static const char norm_bg[] = "#1d2021";
-static const char norm_border[] = "#665c54";
 
-static const char sel_fg[] = "#FE8019";
-static const char sel_bg[] = "#1d2021";
-static const char sel_border[] = "#fbf1c7";
-
-static const char *colors[][3]      = {
+//static const char *colors[][3]      = {
 	/*               fg         bg         border   */
   //	[SchemeNorm] = { col_gray3, col_black, col_black},
   //	[SchemeSel]  = { col_black, col_gray,  col_greendim},
-      [SchemeNorm] =   { norm_fg,   norm_bg,    norm_border }, 		     // unfocused wins
-      [SchemeSel]  =   { sel_fg,    sel_bg,     sel_border },		     // the focused win
+//};
+
+
+static const char norm_fg[] = "#D5C4A1";
+static const char norm_bg[] = "#1C1C1C";
+static const char norm_border[] = "#665c54";
+
+static const char sel_fg[] = "#87af87";
+static const char sel_bg[] = "#444444";
+static const char sel_border[] = "#fbf1c7";
+
+static const char *colors[][3]      = {
+    /*               fg           bg          border                         */
+    [SchemeNorm] =   { norm_fg,   norm_bg,    norm_border }, 		     // unfocused wins
+    [SchemeSel]  =   { sel_fg,    sel_bg,     sel_border },		     // the focused win
 };
+
 
 /* tagging  Japanese/chinese characters*/
 //static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
@@ -51,7 +58,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",          NULL,       NULL,       2,            0,           -1 },
+	{ "cyx",          NULL,       NULL,       2,            0,           -1 },
 };
 
 /* window following */
@@ -89,11 +96,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_gray, "-sf", col_black, NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", "-u", NULL };
-//static const char *termcmd[]  = { "alacritty", "-e", "tmux", NULL };
+//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_gray, "-sf", col_black, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", sel_bg, "-sf", sel_fg, NULL };
+static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24","-e", "tmux", "-u", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *emacscmd[]  = { "emacs", NULL };
 static const char *browserChromecmd[]  = { "google-chrome-stable", NULL };
