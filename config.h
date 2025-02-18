@@ -101,10 +101,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x24", NULL };
-static const char *firefoxcmd[]  = { "firefox", NULL };
-static const char *emacscmd[]  = { "emacs", NULL };
-static const char *browserChromecmd[]  = { "google-chrome-stable", NULL };
-static const char *filecmd[]  = { "thunar", NULL };
 // volume and brightness keys and other Fn shortcuts
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
@@ -123,10 +119,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd } },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = browserChromecmd } },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = filecmd } },
-	{ MODKEY,                	XK_e,      spawn,          {.v = emacscmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lck} },
 
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
@@ -167,8 +159,6 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = dimmer } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brighter } },
 	{ 0,                            XF86XK_WLAN,              spawn, {.v = networkManagerOff } },
-	{ 0,                            XF86XK_Tools,             spawn, {.v = firefoxcmd } },
-	{ 0,                            XF86XK_Bluetooth,         spawn, {.v = browserChromecmd } },
 	{ 0,                            XF86XK_Favorites,         spawn, {.v = scratchpadcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
