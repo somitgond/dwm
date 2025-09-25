@@ -1,30 +1,16 @@
 dwm - dynamic window manager
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
-
-Patches Applied:
----------------
-1. movestack: move windows in stack forward and backward 
-2. systray: system tray in dwm bar
-3. UselessGap: just some gaps between windows and bar
-4. autostart: autostart some programs with dwm
-5. window follow: follow the window through tags
-6. scratchpad
-7. alwayscenter: open new floating window in center
-8. warp: set mouse pointer to the center of window, when changing windows
-9. restartsig: restart dwm without quitting
-10. shiftview: move to neighbouring tags
-11. Different layouts:
-    a. Monocle
-    b. floating
-    c. tile
-    d. centeredMaster
-    e. three column
-12. Cyclelayouts: cycle through the layouts
+version: 6.6
 
 Requirements
 ------------
 In order to build dwm you need the Xlib header files.
+
+Patches
+-------
+1. systray : System Tray in bar  
+2. scratchpad : Scratch Terminal
 
 
 Installation
