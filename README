@@ -11,6 +11,7 @@ Patches
 -------
 1. systray : System Tray in bar  
 2. scratchpad : Scratch Terminal
+3. fullgaps : gaps between windows and bar
 
 
 Installation
