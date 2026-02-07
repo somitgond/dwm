@@ -1,17 +1,11 @@
 dwm - dynamic window manager
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
-version: 6.6
+
 
 Requirements
 ------------
 In order to build dwm you need the Xlib header files.
-
-Patches
--------
-1. systray : System Tray in bar  
-2. scratchpad : Scratch Terminal
-3. fullgaps : gaps between windows and bar
 
 
 Installation
@@ -24,6 +18,12 @@ necessary as root):
 
     make clean install
 
+Patches
+-----------
+1. fullgaps
+2. systray
+3. scratchpad
+4. notitle
 
 Running dwm
 -----------
