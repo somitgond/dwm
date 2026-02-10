@@ -94,6 +94,15 @@ static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
 static const char *dimmer[]   = { "brightnessctl", "set", "4%-", NULL };
 static const char *networkManagerOff[]   = { "nmcli", "networking", "off", NULL };
 
+static const char *termcmd2[] = { "st", NULL };
+static const char *browsercmd[] = {"firefox", NULL};
+
+Autostarttag autostarttaglist[] = {
+	{.cmd = termcmd2, .tags = 1 << 0 },
+	{.cmd = browsercmd, .tags = 1 << 1 },
+	{.cmd = NULL, .tags = 0 },
+};
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
