@@ -27,10 +27,9 @@ static const char dmenufont[]       = "JetBrains Mono:style=Bold:size=11";
 static const char col_gray1[]       = "#1d2021";
 static const char col_gray2[]       = "#282828";
 static const char col_gray3[]       = "#3f3f3f";
-static const char col_gray4[]       = "#eeeeee";
 static const char col_fg[]          = "#ddc7a1";
 static const char col_magenta[]     = "#d3869b";
-static const char col_cyan[]         = "#ea6962";
+static const char col_red[]         = "#ea6962";
 static const char col_green[]       = "#a9b665";
 static const char col_blue[]        = "#7daea3";
 static const char col_yellow[]      = "#d8a657";
@@ -100,7 +99,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_fg, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_fg, "-sb", col_red, "-sf", col_gray3, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
