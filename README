@@ -23,12 +23,7 @@ Patches
 1. fullgaps
 2. systray
 3. scratchpad
-4. notitle
-5. adjacent-tag
-6. autostart
-7. pertag
-8. stacker
-9. autostarttag
+4. cool_autostart
 
 Running dwm
 -----------
