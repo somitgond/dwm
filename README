@@ -24,6 +24,8 @@ Patches
 2. systray
 3. scratchpad
 4. cool_autostart
+5. fixborders: no transparent border when picom is running
+6. nobordermonocle
 
 Running dwm
 -----------
