@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "slstatus", NULL,
+  // "slstatus", NULL,
   "xclip", NULL,
   "dunst", NULL,
   "unclutter", NULL,
@@ -61,9 +61,9 @@ static const int refreshrate = 120;  /* refresh rate (per second) for client mov
 
 static const Layout layouts[] = {
   /* symbol     arrange function */
+  { "[M]",      monocle },
   { "[]=",      tile },    /* first entry is default */
   { "><>",      NULL },    /* no layout function means floating behavior */
-  { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -90,6 +90,7 @@ static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", 
 static const char *mute_mic[] = { "pactl", "set-source-mute",   "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *brighter[] = { "brightnessctl", "set", "5%+", NULL };
 static const char *dimmer[]   = { "brightnessctl", "set", "5%-", NULL };
+static const char *roficmd[] = { "rofi", "-show", "combi", "-show-icons", NULL };
 
 #include "movestack.c"
 static const Key keys[] = {
@@ -97,6 +98,8 @@ static const Key keys[] = {
   { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
   { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
   { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+  { MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("firefox") },
+  { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = roficmd} },
   { MODKEY,                       XK_b,      togglebar,      {0} },
   { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
