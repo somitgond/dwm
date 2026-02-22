@@ -30,6 +30,7 @@ Patches
 8. restartsig
 9. sticky
 10. ewmhTags
+11. focuadjacenttag
 
 Running dwm
 -----------

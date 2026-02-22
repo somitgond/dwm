@@ -8,13 +8,13 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 1;    /* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 4;   /* systray spacing */
+static const unsigned int systrayspacing = 0;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
-static const int showbar            = 0;        /* 0 means no bar */
+static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11" };
-static const char dmenufont[]       = "monospace:size=11";
+static const char *fonts[]          = { "monospace:style=bold:size=10" };
+static const char dmenufont[]       = "monospace:style=bold:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -27,12 +27,12 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  // "slstatus", NULL,
+  "slstatus", NULL,
   "xclip", NULL,
   "dunst", NULL,
   "unclutter", NULL,
   // "picom --backend xrender -b", NULL,
-  "picom --backend glx --xrender-sync-fence --vsync -b", NULL,
+  // "picom --backend glx --xrender-sync-fence --vsync -b", NULL,
   "setxkbmap", "-option", "caps:escape", NULL,
   "st -e tmux -u", NULL,
   NULL /* terminate */
@@ -61,9 +61,9 @@ static const int refreshrate = 120;  /* refresh rate (per second) for client mov
 
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "[M]",      monocle },
   { "[]=",      tile },    /* first entry is default */
   { "><>",      NULL },    /* no layout function means floating behavior */
+  { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -123,6 +123,14 @@ static const Key keys[] = {
   { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
   { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_Left,   viewtoleft,     {0} },
+	{ MODKEY,                       XK_Right,  viewtoright,    {0} },
+	{ MODKEY|ShiftMask,             XK_Left,   tagtoleft,      {0} },
+	{ MODKEY|ShiftMask,             XK_Right,  tagtoright,     {0} },
+	{ MODKEY,                       XK_u,      viewtoleft,     {0} },
+	{ MODKEY,                       XK_n,      viewtoright,    {0} },
+	{ MODKEY|ShiftMask,             XK_u,      tagtoleft,      {0} },
+	{ MODKEY|ShiftMask,             XK_n,      tagtoright,     {0} },
   { MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
   { MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
   { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
